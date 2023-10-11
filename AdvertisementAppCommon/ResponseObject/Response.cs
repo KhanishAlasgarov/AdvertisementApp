@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AdvertisementApp.Common.ResponseObject.Interfaces;
 
-namespace AdvertisementApp.Common
+namespace AdvertisementApp.Common.ResponseObject
 {
-    public class Response: IResponse
+    public class Response : IResponse
     {
         public Response(ResponseType responseType)
         {
-            this.ResponseType = responseType;
+            ResponseType = responseType;
         }
 
-        public Response(ResponseType responseType,string message)
+        public Response(ResponseType responseType, string message)
         {
-            this.ResponseType = responseType;
-            this.Message = message;
+            ResponseType = responseType;
+            Message = message;
         }
 
         public string? Message { get; set; }

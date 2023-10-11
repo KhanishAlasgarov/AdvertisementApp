@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdvertisementApp.Common
+namespace AdvertisementApp.Common.ResponseObject.Interfaces
 {
     public interface IResponse
     {
