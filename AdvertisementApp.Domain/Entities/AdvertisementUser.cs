@@ -19,5 +19,6 @@ namespace AdvertisementApp.Domain.Entities
         public MilitaryStatus? MilitaryStatus { get; set; }
         public DateTime? EndDate { get; set; }
         public int WorkExperience { get; set; }
+        public string? CvPath { get; set; }
     }
 }

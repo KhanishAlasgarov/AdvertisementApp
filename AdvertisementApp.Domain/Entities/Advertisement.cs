@@ -8,5 +8,5 @@ public class Advertisement:BaseEntity
     public bool Status { get; set; }
     public string? Description { get; set; }
     public DateTime CreatedDate { get; set; }
-    public List<AdvertisementUser>? AdvertisementUser { get; set; }
+    public List<AdvertisementUser>? AdvertisementUsers{ get; set; }
 }
