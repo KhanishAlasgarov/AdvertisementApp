@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdvertisementApp.Common", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdvertisementApp.DataAccess", "AdvertisementApp.DataAccess\AdvertisementApp.DataAccess.csproj", "{AD25FE1C-1C2C-4352-BC78-A40C3B46D063}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvertisementApp.Application", "AdvertisementApp.Application\AdvertisementApp.Application.csproj", "{27BA97DA-3769-45A3-8EBF-A9B516D1FA1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdvertisementApp.Application", "AdvertisementApp.Application\AdvertisementApp.Application.csproj", "{27BA97DA-3769-45A3-8EBF-A9B516D1FA1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvertisementApp.UI", "AdvertisementApp.UI\AdvertisementApp.UI.csproj", "{B4C49329-8EA6-4DE5-9F8A-AAFBA34CF9F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdvertisementApp.UI", "AdvertisementApp.UI\AdvertisementApp.UI.csproj", "{B4C49329-8EA6-4DE5-9F8A-AAFBA34CF9F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvertisementApp.Dtos", "AdvertisementApp.Dtos\AdvertisementApp.Dtos.csproj", "{FF11E4D5-93DF-4B78-8D0B-3666D4F277BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{B4C49329-8EA6-4DE5-9F8A-AAFBA34CF9F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4C49329-8EA6-4DE5-9F8A-AAFBA34CF9F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4C49329-8EA6-4DE5-9F8A-AAFBA34CF9F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF11E4D5-93DF-4B78-8D0B-3666D4F277BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF11E4D5-93DF-4B78-8D0B-3666D4F277BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF11E4D5-93DF-4B78-8D0B-3666D4F277BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF11E4D5-93DF-4B78-8D0B-3666D4F277BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
