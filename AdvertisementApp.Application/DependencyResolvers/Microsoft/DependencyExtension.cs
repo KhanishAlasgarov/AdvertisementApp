@@ -1,9 +1,13 @@
 ﻿
 
 
+using AdvertisementApp.Application.Mappings.AutoMapper;
+using AdvertisementApp.Application.ValidationRules;
 using AdvertisementApp.DataAccess.Contexts;
 using AdvertisementApp.DataAccess.UnitOfWork;
+using AdvertisementApp.Dtos.ProvidedServiceDtos;
 using AutoMapper;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,7 +25,7 @@ public static class DependencyExtension
 
         var mapperConfiguration = new MapperConfiguration(opt =>
         {
-
+            opt.AddProfile(new ProvidedServiceProfile());
         });
         var mapper = mapperConfiguration.CreateMapper();
 
@@ -29,5 +33,8 @@ public static class DependencyExtension
         serviceCollection.AddSingleton(mapper);
 
         serviceCollection.AddScoped<IUow, Uow>();
+
+        serviceCollection.AddTransient<IValidator<ProvidedServiceCreateDto>, ProvidedServiceCreateDtoValidator>();
+        serviceCollection.AddTransient<IValidator<ProvidedServiceUpdateDto>, ProvidedServiceUpdateDtoValidator>();
     }
 }
