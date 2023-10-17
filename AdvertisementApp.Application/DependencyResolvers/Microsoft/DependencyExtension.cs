@@ -33,6 +33,7 @@ public static class DependencyExtension
             opt.AddProfile(new ProvidedServiceProfile());
             opt.AddProfile(new AdvertisementProfile());
             opt.AddProfile(new AppUserProfile());
+            opt.AddProfile(new GenderProfile());
         });
         var mapper = mapperConfiguration.CreateMapper();
 
@@ -55,5 +56,7 @@ public static class DependencyExtension
 
         serviceCollection.AddScoped<IProvidedServiceService, ProvidedServiceService>();
         serviceCollection.AddScoped<IAdvertisementService, AdvertisementService>();
+        serviceCollection.AddScoped<IAppUserService, AppUserService>();
+        serviceCollection.AddScoped<IGenderService, GenderService>();
     }
 }
