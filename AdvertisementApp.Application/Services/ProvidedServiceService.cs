@@ -1,7 +1,7 @@
 ﻿using AdvertisementApp.Application.Interfaces;
 using AdvertisementApp.DataAccess.UnitOfWork;
 using AdvertisementApp.Domain.Entities;
-using AdvertisementApp.Dtos.ProvidedServiceDtos;
+using AdvertisementApp.Dtos;
 using AutoMapper;
 using FluentValidation;
 using System;

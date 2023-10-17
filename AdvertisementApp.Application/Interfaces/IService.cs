@@ -1,7 +1,7 @@
 ﻿using AdvertisementApp.Common.ResponseObject.Interfaces;
 using AdvertisementApp.Domain.Common;
 using AdvertisementApp.Dtos.Interfaces;
-using AdvertisementApp.Dtos.ProvidedServiceDtos;
+using AdvertisementApp.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;

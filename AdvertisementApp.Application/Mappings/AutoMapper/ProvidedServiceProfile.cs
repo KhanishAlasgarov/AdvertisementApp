@@ -1,5 +1,5 @@
 ﻿using AdvertisementApp.Domain.Entities;
-using AdvertisementApp.Dtos.ProvidedServiceDtos;
+using AdvertisementApp.Dtos;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
