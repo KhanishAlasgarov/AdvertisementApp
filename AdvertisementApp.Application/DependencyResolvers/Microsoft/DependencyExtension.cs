@@ -5,6 +5,8 @@ using AdvertisementApp.Application.Interfaces;
 using AdvertisementApp.Application.Mappings.AutoMapper;
 using AdvertisementApp.Application.Services;
 using AdvertisementApp.Application.ValidationRules.AdvertisementDtoValidators;
+using AdvertisementApp.Application.ValidationRules.AppUserDtoValidators;
+using AdvertisementApp.Application.ValidationRules.GenderDtoValidators;
 using AdvertisementApp.Application.ValidationRules.ProvidedServiceDtoValidators;
 using AdvertisementApp.DataAccess.Contexts;
 using AdvertisementApp.DataAccess.UnitOfWork;
@@ -30,6 +32,7 @@ public static class DependencyExtension
         {
             opt.AddProfile(new ProvidedServiceProfile());
             opt.AddProfile(new AdvertisementProfile());
+            opt.AddProfile(new AppUserProfile());
         });
         var mapper = mapperConfiguration.CreateMapper();
 
@@ -43,6 +46,12 @@ public static class DependencyExtension
 
         serviceCollection.AddTransient<IValidator<AdvertisementUpdateDto>, AdvertisementUpdateDtoValidator>();
         serviceCollection.AddTransient<IValidator<AdvertisementCreateDto>, AdvertisementCreateDtoValidator>();
+
+        serviceCollection.AddTransient<IValidator<AppUserCreateDto>, AppUserCreateDtoValidator>();
+        serviceCollection.AddTransient<IValidator<AppUserUpdateDto>, AppUserUpdateDtoValidator>();
+
+        serviceCollection.AddTransient<IValidator<GenderCreateDto>, GenderCreateDtoValidator>();
+        serviceCollection.AddTransient<IValidator<GenderUpdateDto>, GenderUpdateDtoValidator>();
 
         serviceCollection.AddScoped<IProvidedServiceService, ProvidedServiceService>();
         serviceCollection.AddScoped<IAdvertisementService, AdvertisementService>();

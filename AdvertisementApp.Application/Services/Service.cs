@@ -7,11 +7,6 @@ using AdvertisementApp.Domain.Common;
 using AdvertisementApp.Dtos.Interfaces;
 using AutoMapper;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdvertisementApp.Application.Services
 {
@@ -29,10 +24,10 @@ namespace AdvertisementApp.Application.Services
             _uow = uow;
         }
 
-        protected IMapper _mapper { get; }
-        protected IValidator<CreateDto> _createDtoValidator { get; }
-        protected IValidator<UpdateDto> _updateDtoValidator { get; }
-        protected IUow _uow { get; }
+        private protected IMapper _mapper { get; }
+        private protected IValidator<CreateDto> _createDtoValidator { get; }
+        private protected IValidator<UpdateDto> _updateDtoValidator { get; }
+        private protected IUow _uow { get; }
 
 
         public async Task<IResponse<CreateDto>> CreateAsync(CreateDto dto)
