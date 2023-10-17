@@ -6,16 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AdvertisementApp.Application.ValidationRules
+namespace AdvertisementApp.Application.ValidationRules.ProvidedServiceDtoValidators
 {
-    public class ProvidedServiceUpdateDtoValidator:AbstractValidator<ProvidedServiceUpdateDto>
+    public class ProvidedServiceCreateDtoValidator : AbstractValidator<ProvidedServiceCreateDto>
     {
-        public ProvidedServiceUpdateDtoValidator()
+        public ProvidedServiceCreateDtoValidator()
         {
-            RuleFor(x => x.Id).NotEmpty();
             RuleFor(x => x.Description).NotEmpty();
-            RuleFor(x => x.Title).NotEmpty().MaximumLength(500);
             RuleFor(x => x.ImagePath).NotEmpty().MaximumLength(500);
+            RuleFor(x => x.Title).NotEmpty().MaximumLength(500);
         }
     }
 }

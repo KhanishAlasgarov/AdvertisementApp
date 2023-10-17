@@ -29,10 +29,10 @@ namespace AdvertisementApp.Application.Services
             _uow = uow;
         }
 
-        private IMapper _mapper { get; }
-        private IValidator<CreateDto> _createDtoValidator { get; }
-        private IValidator<UpdateDto> _updateDtoValidator { get; }
-        private IUow _uow { get; }
+        protected IMapper _mapper { get; }
+        protected IValidator<CreateDto> _createDtoValidator { get; }
+        protected IValidator<UpdateDto> _updateDtoValidator { get; }
+        protected IUow _uow { get; }
 
 
         public async Task<IResponse<CreateDto>> CreateAsync(CreateDto dto)
