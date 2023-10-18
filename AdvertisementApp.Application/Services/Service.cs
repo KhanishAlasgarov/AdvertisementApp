@@ -39,6 +39,7 @@ namespace AdvertisementApp.Application.Services
                 return new Response<CreateDto>(dto, result.ConvertToCustomValidationError());
             }
             await _uow.GetRepository<T>().CreateAsync(_mapper.Map<T>(dto));
+            await _uow.SaveChanges();
             return new Response<CreateDto>(ResponseType.Success, dto);
         }
 

@@ -1,0 +1,64 @@
+﻿@model AppUserCreateDto
+@{
+    ViewData["Title"] = "SignUp";
+}
+
+<div class="mt-4">
+
+    <form method="post" class="p-4 w-75 mx-auto">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="mb-3">
+            <label class="mb-2 fw-bolder" asp-for="Username">Username:</label>
+            <input class="form-control" asp-for="Username" />
+            <span asp-validation-for="Username" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="mb-2 fw-bolder" asp-for="FirstName">First Name:</label>
+            <input class="form-control" asp-for="FirstName" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+
+        </div>
+
+        <div class="mb-3">
+            <label class="mb-2 fw-bolder" asp-for="LastName">Last Name:</label>
+            <input class="form-control" asp-for="LastName" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+
+        </div>
+
+        <div class="mb-3">
+            <label class="mb-2 fw-bolder" asp-for="PhoneNumber">Phone Number:</label>
+            <input class="form-control" asp-for="PhoneNumber" />
+            <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+        </div>
+
+        <div class="mb-3">
+            <label class="mb-2 fw-bolder" asp-for="GenderId">Gender:</label>
+            <select asp-for="GenderId" class="form-select" asp-items="@ViewBag.Genders"></select>
+        </div>
+
+        <div class="mb-3">
+            <label class="mb-2 fw-bolder" asp-for="Password">Password:</label>
+            <input id="password" type="password" class="form-control" asp-for="Password" />
+            <span asp-validation-for="Password" class="text-danger"></span>
+
+        </div>
+
+        <div class="mb-3">
+            <label class="mb-2 fw-bolder" asp-for="ConfirmPassword">ConfirmPassword:</label>
+            <input  type="password" class="form-control" asp-for="ConfirmPassword" />
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
+        </div>
+
+ 
+        <div class="text-end">
+            <button class="btn btn-outline-dark w-25">Send</button>
+        </div>
+
+
+    </form>
+</div>
+ 
