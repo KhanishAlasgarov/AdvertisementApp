@@ -1,4 +1,8 @@
-﻿using AdvertisementApp.Application.Interfaces;
+﻿using AdvertisementApp.Application.Extensions;
+using AdvertisementApp.Application.Interfaces;
+using AdvertisementApp.Common.ResponseObject;
+using AdvertisementApp.Common.ResponseObject.Interfaces;
+using AdvertisementApp.DataAccess.Interfaces;
 using AdvertisementApp.DataAccess.UnitOfWork;
 using AdvertisementApp.Domain.Entities;
 using AdvertisementApp.Dtos;
@@ -16,18 +20,24 @@ public class AppUserService : Service<AppUserCreateDto, AppUserUpdateDto, AppUse
     {
     }
 
-    public bool FindByName(string? username)
+    public async Task<IResponse<AppUserCreateDto>> CreateAsync(AppUserCreateDto dto, int roleid)
     {
-        if (username == null)
-            return false;
+        var validateResult = await _createDtoValidator.ValidateAsync(dto);
 
-        var users = _uow.GetRepository<AppUser>().GetQuery();
+        if (!validateResult.IsValid)
+        {
+            return new Response<AppUserCreateDto>(dto, validateResult.ConvertToCustomValidationError());
+        }
+        var user = _mapper.Map<AppUser>(dto);
+        await _uow.GetRepository<AppUser>().CreateAsync(user);
+        await _uow.GetRepository<AppUserRole>().CreateAsync(new AppUserRole
+        {
+            AppRoleId = roleid,
+            AppUser = user
+        });
 
-        var user = users.FirstOrDefault(x => x.Username == username);
+        await _uow.SaveChangesAsync();
 
-        if (user == null)
-            return false;
-
-        return true;
+        return new Response<AppUserCreateDto>(ResponseType.Success, dto);
     }
 }

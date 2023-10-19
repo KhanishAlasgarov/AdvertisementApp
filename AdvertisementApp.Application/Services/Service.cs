@@ -39,7 +39,7 @@ namespace AdvertisementApp.Application.Services
                 return new Response<CreateDto>(dto, result.ConvertToCustomValidationError());
             }
             await _uow.GetRepository<T>().CreateAsync(_mapper.Map<T>(dto));
-            await _uow.SaveChanges();
+            await _uow.SaveChangesAsync();
             return new Response<CreateDto>(ResponseType.Success, dto);
         }
 
@@ -66,6 +66,7 @@ namespace AdvertisementApp.Application.Services
                 return new Response(ResponseType.NotFound, $"Bu {id}-ə sahib data tapılmadı");
 
             _uow.GetRepository<T>().Remove(_mapper.Map<T>(data));
+            await _uow.SaveChangesAsync();
             return new Response(ResponseType.Success);
         }
 
@@ -81,7 +82,7 @@ namespace AdvertisementApp.Application.Services
                 return new Response<UpdateDto>(ResponseType.NotFound, $"Bu {dto.Id}-ə sahib data tapılmadı");
 
             _uow.GetRepository<T>().Update(_mapper.Map<T>(dto), unchanged);
-
+            await _uow.SaveChangesAsync();
 
             return new Response<UpdateDto>(ResponseType.Success, dto);
 

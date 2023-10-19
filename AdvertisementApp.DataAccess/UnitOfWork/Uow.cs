@@ -24,7 +24,7 @@ namespace AdvertisementApp.DataAccess.UnitOfWork
             return new Repository<T>(_context);
         }
 
-        public async Task SaveChanges()
+        public async Task SaveChangesAsync()
         {
             await _context.SaveChangesAsync();
         }

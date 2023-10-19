@@ -26,7 +26,7 @@ namespace AdvertisementApp.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> SignUp(AppUserCreateDto dto)
         {
-            var response = await _appUserService.CreateAsync(dto);
+            var response = await _appUserService.CreateAsync(dto,2);
 
             if (response.ResponseType == ResponseType.Success)
             {
