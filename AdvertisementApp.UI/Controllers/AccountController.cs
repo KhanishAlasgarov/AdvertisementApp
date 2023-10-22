@@ -1,4 +1,5 @@
 ﻿using AdvertisementApp.Application.Interfaces;
+using AdvertisementApp.Common.Enums;
 using AdvertisementApp.Common.ResponseObject;
 using AdvertisementApp.Dtos;
 using Microsoft.AspNetCore.Mvc;
@@ -26,16 +27,16 @@ namespace AdvertisementApp.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> SignUp(AppUserCreateDto dto)
         {
-            var response = await _appUserService.CreateAsync(dto,2);
+            var response = await _appUserService.CreateAsync(dto, (int)RoleType.Member);
 
             if (response.ResponseType == ResponseType.Success)
             {
                 return RedirectToAction("Index", "Home");
             }
-             
+
             if (response.ValidationErrors == null)
                 return View(dto);
-             
+
             foreach (var item in response.ValidationErrors)
             {
                 ModelState.AddModelError("", item.ErrorMessage ?? "");
@@ -44,11 +45,21 @@ namespace AdvertisementApp.UI.Controllers
             ViewBag.Genders = new SelectList(await GetGenders(), "Id", "Definition", dto.GenderId);
             return View(dto);
         }
+        public IActionResult SignIn()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult SignIn(AppUserLoginDto dto)
+        {
+            return RedirectToAction("Index", "Home");
+        }
 
         public async Task<List<GenderListDto>> GetGenders()
         {
             var responseGender = await _genderService.GetAllAsync();
-            return responseGender.Data;
+
+            return responseGender.Data != null ? responseGender.Data : new List<GenderListDto>();
         }
     }
 }

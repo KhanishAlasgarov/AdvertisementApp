@@ -53,6 +53,7 @@ public static class DependencyExtension
 
         serviceCollection.AddTransient<IValidator<GenderCreateDto>, GenderCreateDtoValidator>();
         serviceCollection.AddTransient<IValidator<GenderUpdateDto>, GenderUpdateDtoValidator>();
+        serviceCollection.AddTransient<IValidator<AppUserLoginDto>, AppUserLoginDtoValidator>();
 
         serviceCollection.AddScoped<IProvidedServiceService, ProvidedServiceService>();
         serviceCollection.AddScoped<IAdvertisementService, AdvertisementService>();

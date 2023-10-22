@@ -18,7 +18,7 @@ namespace AdvertisementApp.Application.ValidationRules.AppUserDtoValidators
             //CascadeMode = CascadeMode.StopOnFirstFailure;
 
 
-            RuleFor(x => x.Password).NotEmpty().WithMessage("Password cannot be empty").MinimumLength(8).WithMessage("The password must consist of at least 8 characters").Equal(x => x.ConfirmPassword).WithMessage("Password and Confirm Password do not match");
+            RuleFor(x => x.Password).NotEmpty().WithMessage("Password cannot be empty").MinimumLength(8).WithMessage("The password must consist of at least 8 characters").Equal(x => x.ConfirmPassword).WithMessage("Password and Confirm Password do not match").Must(password => ContainsDigit(password)).WithMessage("Password must contain at least one number");
             RuleFor(x => x.Username).NotEmpty().WithMessage("Username cannot be empty").MinimumLength(5).WithMessage("The username must consist of at least 5 characters");
 
             RuleFor(x => new
@@ -40,7 +40,13 @@ namespace AdvertisementApp.Application.ValidationRules.AppUserDtoValidators
             RuleFor(x => x.FirstName).Must(firstname => Test(firstname)).WithMessage("Firstname xanış ola bilməz");
         }
 
+        private bool ContainsDigit(string? password)
+        {
+            if (string.IsNullOrEmpty(password))
+                return false;
 
+            return password.Any(char.IsDigit);
+        }
 
         private bool Test(string? firstname)
         {
