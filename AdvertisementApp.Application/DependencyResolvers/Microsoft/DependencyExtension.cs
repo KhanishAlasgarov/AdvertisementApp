@@ -34,6 +34,7 @@ public static class DependencyExtension
             opt.AddProfile(new AdvertisementProfile());
             opt.AddProfile(new AppUserProfile());
             opt.AddProfile(new GenderProfile());
+            opt.AddProfile(new AppRoleProfile());
         });
         var mapper = mapperConfiguration.CreateMapper();
 

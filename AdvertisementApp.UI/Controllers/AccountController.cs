@@ -2,9 +2,12 @@
 using AdvertisementApp.Common.Enums;
 using AdvertisementApp.Common.ResponseObject;
 using AdvertisementApp.Dtos;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Security.Claims;
 
 namespace AdvertisementApp.UI.Controllers
 {
@@ -50,14 +53,57 @@ namespace AdvertisementApp.UI.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult SignIn(AppUserLoginDto dto)
+        public async Task<IActionResult> SignIn(AppUserLoginDto dto)
         {
+            var response = await _appUserService.CheckUserAsync(dto);
+
+            if (response.ResponseType != ResponseType.Success)
+            {
+
+                ModelState.AddModelError("", response?.Message ?? "");
+                return View(dto);
+            }
+
+            var roleResponse = await _appUserService.GetRolesByUserIdAsync(response.Data?.Id);
+
+            var claims = new List<Claim>();
+
+            if (roleResponse.ResponseType == ResponseType.Success)
+            {
+                foreach (var role in roleResponse.Data)
+                {
+                    claims.Add(new Claim(ClaimTypes.Role,role.Definition));
+                }
+                claims.Add(new Claim(ClaimTypes.Name, dto?.Username));
+
+            }
+            claims.Add(new Claim(ClaimTypes.NameIdentifier, response.Data.Id.ToString()));
+
+
+            var claimsIdentity = new ClaimsIdentity(
+                claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            var authProperties = new AuthenticationProperties
+            {
+                IsPersistent = dto.RememberMe,
+            };
+
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentity),
+                authProperties);
+
             return RedirectToAction("Index", "Home");
+
+
+
         }
 
         public async Task<List<GenderListDto>> GetGenders()
         {
             var responseGender = await _genderService.GetAllAsync();
+
+
 
             return responseGender.Data != null ? responseGender.Data : new List<GenderListDto>();
         }

@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AdvertisementApp.Dtos.Interfaces;
 
-namespace AdvertisementApp.Dtos
+namespace AdvertisementApp.Dtos;
+
+public class AppUserLoginDto:IDto
 {
-    public class AppUserLoginDto
-    {
-        public string? Username { get; set; }
-        public string? Password{ get; set; }
-    }
+    public string? Username { get; set; }
+    public string? Password{ get; set; }
+    public bool RememberMe { get; set; }
 }
