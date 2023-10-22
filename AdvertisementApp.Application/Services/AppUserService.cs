@@ -1,5 +1,6 @@
 ﻿using AdvertisementApp.Application.Extensions;
 using AdvertisementApp.Application.Interfaces;
+using AdvertisementApp.Common.Helpers;
 using AdvertisementApp.Common.ResponseObject;
 using AdvertisementApp.Common.ResponseObject.Interfaces;
 using AdvertisementApp.DataAccess.Interfaces;
@@ -31,6 +32,7 @@ public class AppUserService : Service<AppUserCreateDto, AppUserUpdateDto, AppUse
             return new Response<AppUserCreateDto>(dto, validationResult.ConvertToCustomValidationError());
         }
         var user = _mapper.Map<AppUser>(dto);
+        user.Password = Helper.Hash(user.Password);
         await _uow.GetRepository<AppUser>().CreateAsync(user);
         await _uow.GetRepository<AppUserRole>().CreateAsync(new AppUserRole
         {
@@ -53,7 +55,7 @@ public class AppUserService : Service<AppUserCreateDto, AppUserUpdateDto, AppUse
 
         //var user = await _uow.GetRepository<AppUser>().GetByFilterAsync(x => x.Username == dto.Username && x.Password == dto.Password);
         var users = _uow.GetRepository<AppUser>().GetQuery();
-        var user = await users.FirstOrDefaultAsync(x => x.Username == dto.Username && x.Password == dto.Password);
+        var user = await users.FirstOrDefaultAsync(x => x.Username == dto.Username && x.Password == Helper.Hash(dto.Password));
         if (user != null)
         {
             var appUserListDto = _mapper.Map<AppUserListDto>(user);
