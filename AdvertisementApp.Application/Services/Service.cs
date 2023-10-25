@@ -55,7 +55,8 @@ namespace AdvertisementApp.Application.Services
             if (data == null)
                 return new Response<IDto>(ResponseType.NotFound, $"Bu {id}-ə sahib data tapılmadı");
 
-            return new Response<IDto>(ResponseType.Success, _mapper.Map<IDto>(data));
+            return new Response<IDto>(ResponseType.Success, _mapper.Map<IDto>(data.FirstOrDefault()));
+
         }
 
         public async Task<IResponse> RemoveAsync(int id)

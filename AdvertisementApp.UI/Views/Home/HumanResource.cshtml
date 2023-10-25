@@ -22,12 +22,12 @@
                             <div>
                                 @if (User.Identity.IsAuthenticated)
                                 {
-                                    <a>Apply</a>
+                                    <a asp-action="Send" asp-route-advertisementid="@Model[i].Id" asp-controller="Advertisement">Apply</a>
                                 }
                                 else
                                 {
                                     <div class="alert alert-light text-center">
-                                        You must register to apply. <a class="text-danger" href="#">Register</a>
+                                        You must signin to apply. <a class="text-danger" asp-action="signin" asp-controller="account">Signin</a>
                                     </div>
                                 }
                             </div>

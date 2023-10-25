@@ -24,6 +24,7 @@ namespace AdvertisementApp.UI.Controllers
 
         public async Task<IActionResult> SignUp()
         {
+            
             ViewBag.Genders = new SelectList(await GetGenders(), "Id", "Definition");
             return View();
         }
@@ -72,7 +73,7 @@ namespace AdvertisementApp.UI.Controllers
             {
                 foreach (var role in roleResponse.Data)
                 {
-                    claims.Add(new Claim(ClaimTypes.Role,role.Definition));
+                    claims.Add(new Claim(ClaimTypes.Role, role.Definition));
                 }
                 claims.Add(new Claim(ClaimTypes.Name, dto?.Username));
 
@@ -97,6 +98,12 @@ namespace AdvertisementApp.UI.Controllers
 
 
 
+        }
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(
+                  CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Home");
         }
 
         public async Task<List<GenderListDto>> GetGenders()

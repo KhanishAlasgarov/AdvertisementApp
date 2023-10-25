@@ -37,7 +37,7 @@ namespace AdvertisementApp.Application.ValidationRules.AppUserDtoValidators
 
             //RuleFor(x => x.Username).Must(username => UniqueUsername(username)).WithMessage("this username is already taken");
 
-            RuleFor(x => x.FirstName).Must(firstname => Test(firstname)).WithMessage("Firstname xanış ola bilməz");
+            //RuleFor(x => x.FirstName).Must(firstname => Test(firstname)).WithMessage("Firstname xanış ola bilməz");
         }
 
         private bool ContainsDigit(string? password)

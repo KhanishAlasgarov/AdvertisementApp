@@ -1,0 +1,13 @@
+﻿@model AdvertisementUserCreateDto
+@{
+    ViewData["Title"] = "Send";
+}
+
+<div class="container w-75">
+    <form method="post">
+        <div class="mb-3">
+            <label asp-for="MilitaryStatusId">Military Status:</label>
+            <select asp-for="MilitaryStatusId" asp-items="@ViewBag.MilitaryStatuses" class="form-select-sm"></select>
+        </div>
+    </form>
+</div>
