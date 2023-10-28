@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AdvertisementApp.Common.Enums;
 using AdvertisementApp.Common.ResponseObject.Interfaces;
 
 namespace AdvertisementApp.Common.ResponseObject
@@ -24,10 +20,5 @@ namespace AdvertisementApp.Common.ResponseObject
         public ResponseType ResponseType { get; set; }
     }
 
-    public enum ResponseType
-    {
-        Success,
-        ValidationError,
-        NotFound
-    }
+    
 }

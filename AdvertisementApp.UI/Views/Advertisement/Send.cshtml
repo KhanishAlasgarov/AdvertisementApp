@@ -1,13 +1,54 @@
-﻿@model AdvertisementUserCreateDto
+﻿@using AdvertisementApp.Common.Enums;
+@model AdvertisementUserCreateDto
 @{
     ViewData["Title"] = "Send";
 }
 
-<div class="container w-75">
-    <form method="post">
+
+<form method="post" class="container w-75 mx-auto p-3" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input asp-for="AppUserId" type="hidden" />
+    <input asp-for="AdvertisementId" type="hidden" />
+    @if ((int)GenderType.Male == ViewBag.GenderId)
+    {
         <div class="mb-3">
             <label asp-for="MilitaryStatusId">Military Status:</label>
-            <select asp-for="MilitaryStatusId" asp-items="@ViewBag.MilitaryStatuses" class="form-select-sm"></select>
+            <select onchange="setInputVisibility()" asp-for="MilitaryStatusId" asp-items="@ViewBag.MilitaryStatuses" class="form-select-sm"></select>
         </div>
-    </form>
-</div>
+        <div class="mb-3" id="hiddenInput" style="display:none;">
+            <label>Tecil Tarihi</label>
+            <input type="date" min="@DateTime.Now" asp-for="@Model.EndDate" class="form-control" />
+        </div>
+    }
+    else
+    {
+        <input type="hidden" asp-for="MilitaryStatusId" value="@((int)MilitaryStatusType.Exempt)" />
+    }
+    <div class="mb-3">
+        <label>Work Experience(year):</label>
+        <input class="form-control" asp-for="WorkExperience" min="1" />
+    </div>
+    <div class="mb-3">
+        <label>Cv:</label>
+        <input name="cv" type="file" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <button class="btn btn-outline-danger">Save</button>
+    </div>
+</form>
+
+@section script {
+    <script>
+        setInputVisibility();
+        function setInputVisibility(e) {
+            var MilitaryStatusIdValue = document.getElementById("MilitaryStatusId").value;
+
+            if (MilitaryStatusIdValue == 2) {
+                document.getElementById("hiddenInput").style.display = "block";
+            } else {
+                document.getElementById("hiddenInput").style.display = "none";
+
+            }
+        }
+    </script>
+}

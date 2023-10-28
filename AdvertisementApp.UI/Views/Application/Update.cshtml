@@ -1,0 +1,42 @@
+﻿@model AdvertisementUpdateDto
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="container my-3" style="margin:0 auto;">
+    <div asp-validation-summary="All"></div>
+    <form method="post">
+        <div class="mb-3">
+            <label asp-for="Title">Title:</label>
+            <input asp-for="Title" class="form-text" style="margin-left:5px;" />
+        </div>
+
+        <div class="mb-3" style="display:flex;align-items:center;gap:5px;">
+            <label asp-for="Status" class="form-check-label">Status:</label>
+            <input asp-for="Status" class="form-check-input" />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label">Description:</label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-outline-secondary">Save</button>
+        </div>
+    </form>
+</div>
+@section css{
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.27.3/ui/trumbowyg.min.css" integrity="sha512-Fm8kRNVGCBZn0sPmwJbVXlqfJmPC13zRsMElZenX6v721g/H7OukJd8XzDEBRQ2FSATK8xNF9UYvzsCtUpfeJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+}
+@section script{
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.27.3/trumbowyg.min.js" integrity="sha512-YJgZG+6o3xSc0k5wv774GS+W1gx0vuSI/kr0E0UylL/Qg/noNspPtYwHPN9q6n59CTR/uhgXfjDXLTRI+uIryg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#Description").trumbowyg();
+        })
+    </script>
+
+}

@@ -113,6 +113,23 @@ namespace AdvertisementApp.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AdvertisementUserStatuses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Definition = "Done"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Definition = "Deferred"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Definition = "Exempt"
+                        });
                 });
 
             modelBuilder.Entity("AdvertisementApp.Domain.Entities.AppRole", b =>

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AdvertisementApp.DataAccess.Migrations
 {
     [DbContext(typeof(AdvertisementAppContext))]
-    [Migration("20231022203505_AppUserPasswordColonUpdated")]
-    partial class AppUserPasswordColonUpdated
+    [Migration("20231025072151_addDataToMilitaryStatus")]
+    partial class addDataToMilitaryStatus
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -116,6 +116,23 @@ namespace AdvertisementApp.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AdvertisementUserStatuses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Definition = "Done"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Definition = "Deferred"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Definition = "Exempt"
+                        });
                 });
 
             modelBuilder.Entity("AdvertisementApp.Domain.Entities.AppRole", b =>

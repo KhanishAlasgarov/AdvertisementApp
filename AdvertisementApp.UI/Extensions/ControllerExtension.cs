@@ -1,7 +1,6 @@
-﻿using AdvertisementApp.Common.ResponseObject;
+﻿using AdvertisementApp.Common.Enums;
 using AdvertisementApp.Common.ResponseObject.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace AdvertisementApp.UI.Extensions;
 

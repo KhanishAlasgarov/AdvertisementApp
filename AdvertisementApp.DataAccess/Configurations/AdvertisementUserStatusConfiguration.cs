@@ -14,6 +14,22 @@ namespace AdvertisementApp.DataAccess.Configurations
         public void Configure(EntityTypeBuilder<AdvertisementUserStatus> builder)
         {
             builder.Property(x => x.Definition).IsRequired().HasMaxLength(300);
+
+            builder.HasData(new AdvertisementUserStatus[]
+            {
+                new AdvertisementUserStatus{
+                Id=1,
+                Definition= "Done"
+                },
+                new AdvertisementUserStatus{
+                Id=2,
+                Definition= "Deferred"
+                },
+                new AdvertisementUserStatus{
+                Id=3,
+                Definition= "Exempt"
+                }
+            });
         }
     }
 }

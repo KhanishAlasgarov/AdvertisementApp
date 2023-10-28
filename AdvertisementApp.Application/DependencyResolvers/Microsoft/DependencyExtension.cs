@@ -5,6 +5,7 @@ using AdvertisementApp.Application.Interfaces;
 using AdvertisementApp.Application.Mappings.AutoMapper;
 using AdvertisementApp.Application.Services;
 using AdvertisementApp.Application.ValidationRules.AdvertisementDtoValidators;
+using AdvertisementApp.Application.ValidationRules.AdvertisementUserDtoValidators;
 using AdvertisementApp.Application.ValidationRules.AppUserDtoValidators;
 using AdvertisementApp.Application.ValidationRules.GenderDtoValidators;
 using AdvertisementApp.Application.ValidationRules.ProvidedServiceDtoValidators;
@@ -35,6 +36,10 @@ public static class DependencyExtension
             opt.AddProfile(new AppUserProfile());
             opt.AddProfile(new GenderProfile());
             opt.AddProfile(new AppRoleProfile());
+            opt.AddProfile(new AdvertisementProfile());
+            opt.AddProfile(new AdvertisementUserProfile());
+            opt.AddProfile(new MilitaryStatusProfile());
+            opt.AddProfile(new AdvertisementUserStatusProfile());
         });
         var mapper = mapperConfiguration.CreateMapper();
 
@@ -45,20 +50,20 @@ public static class DependencyExtension
 
         serviceCollection.AddTransient<IValidator<ProvidedServiceCreateDto>, ProvidedServiceCreateDtoValidator>();
         serviceCollection.AddTransient<IValidator<ProvidedServiceUpdateDto>, ProvidedServiceUpdateDtoValidator>();
-
         serviceCollection.AddTransient<IValidator<AdvertisementUpdateDto>, AdvertisementUpdateDtoValidator>();
         serviceCollection.AddTransient<IValidator<AdvertisementCreateDto>, AdvertisementCreateDtoValidator>();
-
         serviceCollection.AddTransient<IValidator<AppUserCreateDto>, AppUserCreateDtoValidator>();
         serviceCollection.AddTransient<IValidator<AppUserUpdateDto>, AppUserUpdateDtoValidator>();
-
         serviceCollection.AddTransient<IValidator<GenderCreateDto>, GenderCreateDtoValidator>();
         serviceCollection.AddTransient<IValidator<GenderUpdateDto>, GenderUpdateDtoValidator>();
         serviceCollection.AddTransient<IValidator<AppUserLoginDto>, AppUserLoginDtoValidator>();
+        serviceCollection.AddTransient<IValidator<AdvertisementUserCreateDto>, AdvertisementUserCreateDtoValidator>();
+        serviceCollection.AddTransient<IValidator<AdvertisementUserUpdateDto>, AdvertisementUserUpdateDtoValidator>();
 
         serviceCollection.AddScoped<IProvidedServiceService, ProvidedServiceService>();
         serviceCollection.AddScoped<IAdvertisementService, AdvertisementService>();
         serviceCollection.AddScoped<IAppUserService, AppUserService>();
         serviceCollection.AddScoped<IGenderService, GenderService>();
+        serviceCollection.AddScoped<IAdvertisementUserService, AdvertisementUserService>();
     }
 }

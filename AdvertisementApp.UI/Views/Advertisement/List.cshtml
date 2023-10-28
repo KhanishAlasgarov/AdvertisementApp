@@ -1,0 +1,97 @@
+﻿@using AdvertisementApp.Common.Enums;
+@model List<AdvertisementUserListDto>
+@{
+    ViewData["Title"] = "List";
+}
+<style>
+    #active {
+    }
+</style>
+<div class="p-4">
+    <div class="text-end my-3 p-1">
+        @{
+            var currentStatus = ViewBag.type as AdvertisementAppUserStatusType?;
+            var isApplied = currentStatus == AdvertisementAppUserStatusType.Applied;
+            var isInterview = currentStatus == AdvertisementAppUserStatusType.Interview;
+            var isNegative = currentStatus == AdvertisementAppUserStatusType.Negative;
+        }
+
+        @if (!isApplied)
+        {
+            <a asp-action="List" asp-route-type="@AdvertisementAppUserStatusType.Applied" class="btn btn-outline-danger">Applicants list</a>
+        }
+        else
+        {
+            <a asp-action="List" asp-route-type="@AdvertisementAppUserStatusType.Negative" class="btn btn-outline-dark">Rejected applications</a>
+            <a asp-action="List" asp-route-type="@AdvertisementAppUserStatusType.Interview" class="btn btn-outline-dark">Applications called for interview</a>
+        }
+
+        @if (isInterview)
+        {
+            <a asp-action="List" asp-route-type="@AdvertisementAppUserStatusType.Negative" class="btn btn-outline-dark">Rejected applications</a>
+        }
+
+        @if (isNegative)
+        {
+            <a asp-action="List" asp-route-type="@AdvertisementAppUserStatusType.Interview" class="btn btn-outline-dark">Applications called for interview</a>
+        }
+
+    </div>
+    @if (ViewBag.Count != 0)
+    {
+        <table class="table table-hover table-bordered table-sm table-striped">
+            <thead>
+                <tr>
+                    <th>Applied advertisement</th>
+                    <th>Applicant</th>
+                    <th>Gender of the applicant</th>
+                    <th>Status of application</th>
+                    <th>Military service status</th>
+                    <th>Deferment end date</th>
+                    <th>Work Experience</th>
+                    <th>Operation</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Advertisement.Title</td>
+                        <td>@item.AppUser.FirstName @item.AppUser.LastName</td>
+                        <td>@item.AppUser.Gender.Definition</td>
+                        <td>@item.AdvertisementUserStatus.Definition</td>
+                        <td>@item.MilitaryStatus.Definition</td>
+                        <td>@(item.EndDate?.ToString("MM/dd/yyyy") ?? "Exempt or done")</td>
+                        <td>@item.WorkExperience</td>
+
+                        <td>
+                            @if (isApplied || isNegative)
+                            {
+                                <a asp-action="SetStatus" asp-route-currentStatus="@currentStatus" asp-route-type="@AdvertisementAppUserStatusType.Interview" asp-route-advertisementUserId="@item.Id">Call for interview</a>
+                            }
+                            @if (isApplied || isInterview)
+                            {
+                                <a asp-action="SetStatus" asp-route-currentStatus="@currentStatus" asp-route-type="@AdvertisementAppUserStatusType.Negative" asp-route-advertisementUserId="@item.Id">Reject</a>
+
+                            }
+                        </td>
+
+
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div style="display:flex;align-items:center;justify-content:center;font-size:25px;color:red;">
+            <h1>Data Yoxdu</h1>
+        </div>
+
+
+    }
+
+</div>
+

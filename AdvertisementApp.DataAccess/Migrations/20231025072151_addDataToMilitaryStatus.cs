@@ -7,18 +7,19 @@
 namespace AdvertisementApp.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class dataaddedtorole : Migration
+    public partial class addDataToMilitaryStatus : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.InsertData(
-                table: "AppRoles",
+                table: "AdvertisementUserStatuses",
                 columns: new[] { "Id", "Definition" },
                 values: new object[,]
                 {
-                    { 1, "Admin" },
-                    { 2, "Member" }
+                    { 1, "Done" },
+                    { 2, "Deferred" },
+                    { 3, "Exempt" }
                 });
         }
 
@@ -26,14 +27,19 @@ namespace AdvertisementApp.DataAccess.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DeleteData(
-                table: "AppRoles",
+                table: "AdvertisementUserStatuses",
                 keyColumn: "Id",
                 keyValue: 1);
 
             migrationBuilder.DeleteData(
-                table: "AppRoles",
+                table: "AdvertisementUserStatuses",
                 keyColumn: "Id",
                 keyValue: 2);
+
+            migrationBuilder.DeleteData(
+                table: "AdvertisementUserStatuses",
+                keyColumn: "Id",
+                keyValue: 3);
         }
     }
 }

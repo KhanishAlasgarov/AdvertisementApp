@@ -1,9 +1,5 @@
-﻿using AdvertisementApp.Common.ResponseObject.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AdvertisementApp.Common.Enums;
+using AdvertisementApp.Common.ResponseObject.Interfaces;
 
 namespace AdvertisementApp.Common.ResponseObject
 {

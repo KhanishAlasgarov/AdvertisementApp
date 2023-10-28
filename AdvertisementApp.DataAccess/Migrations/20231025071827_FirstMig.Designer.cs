@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AdvertisementApp.DataAccess.Migrations
 {
     [DbContext(typeof(AdvertisementAppContext))]
-    [Migration("20231012180703_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20231025071827_FirstMig")]
+    partial class FirstMig
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -134,6 +134,18 @@ namespace AdvertisementApp.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AppRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Definition = "Admin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Definition = "Member"
+                        });
                 });
 
             modelBuilder.Entity("AdvertisementApp.Domain.Entities.AppUser", b =>
@@ -159,8 +171,7 @@ namespace AdvertisementApp.DataAccess.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()

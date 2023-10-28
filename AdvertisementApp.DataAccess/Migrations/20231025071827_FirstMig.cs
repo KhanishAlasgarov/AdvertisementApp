@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace AdvertisementApp.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class FirstMig : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -104,7 +106,7 @@ namespace AdvertisementApp.DataAccess.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
                     Username = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     GenderId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -186,6 +188,15 @@ namespace AdvertisementApp.DataAccess.Migrations
                         principalTable: "AppUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AppRoles",
+                columns: new[] { "Id", "Definition" },
+                values: new object[,]
+                {
+                    { 1, "Admin" },
+                    { 2, "Member" }
                 });
 
             migrationBuilder.CreateIndex(

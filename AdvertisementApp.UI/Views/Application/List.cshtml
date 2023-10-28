@@ -1,0 +1,45 @@
+﻿@model List<AdvertisementListDto>
+@{
+    ViewData["Title"] = "List";
+}
+
+<div class="container my-3 p-2" style="margin:0 auto;">
+    <a class="btn btn-outline-primary my-3 text-end" asp-action="Create">Create</a>
+    @if (Model.Count != 0)
+    {
+        <table class="table table-striped table-bordered table-sm">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Status</th>
+                    <th>Created Date</th>
+                    <th>Process</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Title</td>
+
+                        <td>@(item.Status ? "Active" : "Passive")</td>
+                        <td>@item.CreatedDate.ToString("MM/dd/yyyy")</td>
+                        <td>
+                            <a asp-action="Update" asp-route-id="@item.Id" class="btn btn-outline-dark">Update</a>
+                            <a asp-action="Remove" asp-route-id="@item.Id" class="btn btn-outline-dark">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div style="display:flex;align-items:center;justify-content:center;font-size:25px;color:red;">
+            <h1>Data Yoxdu</h1>
+        </div>
+    }
+</div>
+

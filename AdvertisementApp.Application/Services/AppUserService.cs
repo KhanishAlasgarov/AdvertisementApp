@@ -1,9 +1,9 @@
 ﻿using AdvertisementApp.Application.Extensions;
 using AdvertisementApp.Application.Interfaces;
+using AdvertisementApp.Common.Enums;
 using AdvertisementApp.Common.Helpers;
 using AdvertisementApp.Common.ResponseObject;
 using AdvertisementApp.Common.ResponseObject.Interfaces;
-using AdvertisementApp.DataAccess.Interfaces;
 using AdvertisementApp.DataAccess.UnitOfWork;
 using AdvertisementApp.Domain.Entities;
 using AdvertisementApp.Dtos;
